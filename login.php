@@ -35,12 +35,12 @@
     if($count==1)
     {
        
-echo "<script>
-        var email = '$email'; 
-        var url = 'addrecord.php?email=' + encodeURIComponent(email);
+        echo "<script>
+        var url = 'index.php?email=' + '$email';
         alert('Login Successful');
         window.location = url;
       </script>";
+
 
 
     }

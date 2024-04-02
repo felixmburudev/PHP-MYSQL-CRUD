@@ -1,4 +1,12 @@
-<!-- index.php -->
+<?php
+$email = isset($_GET['email']) ? $_GET['email'] : '';
+if (empty($email) || is_null($email)) {
+    echo "<h3> Login to add or update a record</h3>";
+} else {
+    echo "<h3> Logged in as $email</h3>";
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,8 +31,14 @@
 <body>
     <h1>Welcome</h1>
     <h2>BSCS</h2>
-    <a href="login.php">Login</a>
-    <a href="signup.php">Signup</a>
+
+    <button onclick="window.location.href='login.php'">Login</button>
+    <button onclick="window.location.href='signup.php'">Signup</button>
+    <?php if (!empty($email)) { ?>
+        <button onclick="window.location.href='addrecord.php?email=<?php echo $email; ?>'">Add Record</button>
+<button onclick="window.location.href='update.php?email=<?php echo $email; ?>'">Update Record</button>
+<button onclick="window.location.href='login.php'">Logout</button>
+    <?php } ?>
 
     <h2>Students Table</h2>
     <table>
