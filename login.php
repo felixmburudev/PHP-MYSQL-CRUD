@@ -1,19 +1,24 @@
-<!-- loing page -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="styles.css">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>login</title>
+    <title>Login</title>
     
 </head>
 <body>
-<form method="post" action="login.php" >
-        Email: <input type="text" required name="email"><br>
-        Password: <input type="password" required name="password"><br>
-        <input type="submit" value="Submit" name="submit">
-        <a href="signup.php">signup</a>
-    </form>
+    <div class="login-form-container">
+        <form method="post" action="login.php" class="login-form">
+            <label for="email">Email:</label>
+            <input type="text" required name="email" id="email"><br>
+            <label for="password">Password:</label>
+            <input type="password" required name="password" id="password"><br>
+            <input type="submit" value="Submit" name="submit" class="login-submit-btn">
+        </form>
+        <a href="signup.php" class="signup-link">Signup</a>
+    </div>
 </body>
 </html>
 

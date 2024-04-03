@@ -1,4 +1,4 @@
-<!-- addrecord.php -->
+
 <?php
 $email = isset($_GET['email']) ? $_GET['email'] : '';
 $email_exist = strlen($email) > 0;
@@ -12,9 +12,7 @@ if(isset($_POST['submit'])) {
     $name = $_POST['name'];
     $dob = $_POST['dob'];
     $gender = $_POST['gender'];
-    $class = $_POST['class'];
-
-    
+    $class = $_POST['class'];   
 
     $conn = mysqli_connect("localhost", "root", "", "BSCS");
 
@@ -43,36 +41,34 @@ if(isset($_POST['submit'])) {
     mysqli_close($conn);
 }
 ?>
-
-
-
-
 <!DOCTYPE html>
 <html>
 <head>
+    <link rel="stylesheet" href="styles.css">
     <title>Add Record</title>
 </head>
 <body>
-    <h2>Add Record</h2>
-    <h1 id="user"><?php echo  " Login in as " .  $email; ?></h1>
-    <form method="post" action="addrecord.php">
-    <input type="hidden" name="email" value="<?php echo htmlspecialchars($email); ?>">
-        Name: <input type="text" name="name" required><br>
-        Date of Birth: <input type="date" name="dob" required><br>
-        Gender: 
-        <select name="gender" required>
-            <option value="Male">Male</option>
-            <option value="Female">Female</option>
-            <option value="Other">Other</option>
-        </select>
-        <br>
-        Class: <input type="text" name="class" required><br>
-        <input type="submit" name="submit" value="Insert a Record">
-    </form>
-    <button onclick="window.location.href='index.php?email=<?php echo $email; ?>'">Home</button>
-        <button onclick="window.location.href='update.php?email=<?php echo $email; ?>'">Update Record</button>
-    
-
-
+    <div class="add-record-container">
+        <h2>Add Record</h2>
+        <h1 id="user"><?php echo  " Logged in as " .  $email; ?></h1>
+        <form method="post" action="addrecord.php" class="add-record-form">
+            <input type="hidden" name="email" value="<?php echo htmlspecialchars($email); ?>">
+            Name: <input type="text" name="name" required><br>
+            Date of Birth: <input type="date" name="dob" required><br>
+            Gender: 
+            <select name="gender" required>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Other">Other</option>
+            </select><br>
+            Class: <input type="text" name="class" required><br>
+            <input type="submit" name="submit" value="Insert a Record" class="add-record-submit-btn">
+        </form>
+        <div class="btn">
+        <button onclick="window.location.href='index.php?email=<?php echo $email; ?>'" class="home-btn">Home</button>
+        <button onclick="window.location.href='update.php?email=<?php echo $email; ?>'" class="update-record-btn">Update Record</button>
+    </div>
+    </div>
 </body>
 </html>
+

@@ -1,21 +1,25 @@
-<!-- signup.php -->
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Signup</title>
+    <title>Signup</title>  
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h2>Signup</h2>
-    <form method="post" action="signup.php">
-        Email: <input type="text" required name="email"><br>
-        Password: <input type="password" required name="password"><br>
-        Password: <input type="password" required name="confirmpassword"><br>
-        <input type="submit" value="Submit" name="submit">
-    </form>
-    <a href="login.php"> login</a>
+    <div class="signup-container">
+        <h2>Signup</h2>
+        <form method="post" action="signup.php" class="signup-form">
+            <label for="email">Email:</label>
+            <input type="text" required name="email" id="email"><br>
+            <label for="password">Password:</label>
+            <input type="password" required name="password" id="password"><br>
+            <label for="confirmpassword">Confirm Password:</label>
+            <input type="password" required name="confirmpassword" id="confirmpassword"><br>
+            <input type="submit" value="Submit" name="submit" class="signup-submit-btn">
+        </form>
+        <a href="login.php" class="login-link">Login</a>
+    </div>
 </body>
 </html>
-
 
 <?php
 if (isset($_POST["submit"])) {
@@ -23,7 +27,7 @@ if (isset($_POST["submit"])) {
     $password = $_POST['password'];
     $confirmpassword = $_POST['confirmpassword'];
 
-    if (empty($email) || empty($password) || empty($confirmpassword)) {
+    if (empty($email) || empty($password) || empty($confirmpassword) || strlen($password) < 4 ) {
         echo "<h3>Please fill in all fields</h3>";
         exit();
     }
@@ -55,4 +59,3 @@ if (isset($_POST["submit"])) {
     $conn->close();
 }
 ?>
-

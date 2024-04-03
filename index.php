@@ -10,36 +10,22 @@ if (empty($email) || is_null($email)) {
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8">    
+    <link rel="stylesheet" href="styles.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BSCS</title>
-    <style>
-        table {
-            border-collapse: collapse;
-            width: 100%;
-        }
-        th, td {
-            border: 1px solid black;
-            padding: 8px;
-            text-align: left;
-        }
-        th {
-            background-color: #f2f2f2;
-        }
-    </style>
 </head>
 <body>
-    <h1>Welcome</h1>
-    <h2>BSCS</h2>
-
+    <h2>Student Records Software</h2>
+    <div class="btn">
     <button onclick="window.location.href='login.php'">Login</button>
     <button onclick="window.location.href='signup.php'">Signup</button>
-    <?php if (!empty($email)) { ?>
+   <?php if (!empty($email)) { ?>
         <button onclick="window.location.href='addrecord.php?email=<?php echo $email; ?>'">Add Record</button>
 <button onclick="window.location.href='update.php?email=<?php echo $email; ?>'">Update Record</button>
 <button onclick="window.location.href='login.php'">Logout</button>
     <?php } ?>
-
+ </div>
     <h2>Students Table</h2>
     <table>
         <tr>
