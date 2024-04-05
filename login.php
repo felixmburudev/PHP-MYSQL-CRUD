@@ -1,3 +1,28 @@
+<?php
+if(isset($_POST['submit'])) {
+    $conn = mysqli_connect("sql11.freesqldatabase.com", "sql11696603", "ugd3D8qMRU", "sql11696603");
+    
+    if (!$conn) {
+        die("Connection failed: ". mysqli_connect_error());
+    }
+
+    $email=$_POST['email'];
+    $password=$_POST['password'];
+    $sql="select * from users where email='$email' and password='$password'";
+    $result=mysqli_query($conn,$sql);
+    $count=mysqli_num_rows($result);
+    if($count==1) {
+        echo "<script>
+                var url = 'index.php?email=' + '$email';
+                alert('Login Successful');
+                window.location = url;
+              </script>";
+    } else {
+        echo "<h3 style='position: fixed; top: 0; left: 0; width: 100%; background-color: white; z-index: 9999; padding: 10px; color: red;'>Wrong Password</h3>";
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,38 +46,3 @@
     </div>
 </body>
 </html>
-
-<?php
- if(isset($_POST['submit']))
- {
-
-    $conn = mysqli_connect("localhost", "root", "", "BSCS");
-    
-    if (!$conn) {
-        die("Connection failed: ". mysqli_connect_error());
-    }
-
-    $email=$_POST['email'];
-    $password=$_POST['password'];
-    $sql="select * from users where email='$email' and password='$password'";
-    $result=mysqli_query($conn,$sql);
-    $count=mysqli_num_rows($result);
-    if($count==1)
-    {
-       
-        echo "<script>
-        var url = 'index.php?email=' + '$email';
-        alert('Login Successful');
-        window.location = url;
-      </script>";
-
-
-
-    }
-    else
-    {
-        echo "<script>alert('Login Failed');window.location='login.php';</script>";
-    }
- }
-
-?>

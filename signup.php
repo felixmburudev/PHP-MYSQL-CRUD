@@ -1,3 +1,45 @@
+<?php
+if (isset($_POST["submit"])) {
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+    $confirmpassword = $_POST['confirmpassword'];
+
+    if (empty($email) || empty($password) || empty($confirmpassword) || strlen($password) < 4 ) {
+        echo "<h3 style='position: fixed; top: 0; left: 0; width: 100%; background-color: white; z-index: 9999; padding: 10px; color: red;'>Please fill in all fields</h3>";
+        exit();
+    }
+    if ( strlen($password) < 4 ) {
+        echo "<h3 style='position: fixed; top: 0; left: 0; width: 100%; background-color: white; z-index: 9999; padding: 10px; color: red;'>Please type a stronger password</h3>";
+        exit();
+    }
+    if ($password != $confirmpassword) {
+        echo "<h3 style='position: fixed; top: 0; left: 0; width: 100%; background-color: white; z-index: 9999; padding: 10px; color: red;'>Password mismatch</h3>";
+        exit();
+    }
+
+        
+    $email = $_POST['email'];
+    $sql_select = "SELECT * FROM users WHERE email = '$email'";
+    $result = $conn->query($sql_select);
+
+    if ($result->num_rows > 0) {
+        echo "Email already exists. Please choose a different email.";
+    } else {
+        $password = $_POST['password']; 
+
+
+        // Perform the INSERT query to register the new user
+        $sql_insert = "INSERT INTO users (email, password) VALUES ('$email', '$password')";
+        if ($conn->query($sql_insert) === TRUE) {
+            echo "<script>alert('Signup Success');</script>";
+        } else {
+            echo "Error: " . $sql_insert . "<br>" . $conn->error;
+        }
+    }
+
+    $conn->close();
+}
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,42 +62,3 @@
     </div>
 </body>
 </html>
-
-<?php
-if (isset($_POST["submit"])) {
-    $email = $_POST['email'];
-    $password = $_POST['password'];
-    $confirmpassword = $_POST['confirmpassword'];
-
-    if (empty($email) || empty($password) || empty($confirmpassword) || strlen($password) < 4 ) {
-        echo "<h3>Please fill in all fields</h3>";
-        exit();
-    }
-    if ($password != $confirmpassword) {
-        echo "<h3>Password mismatch</h3>";
-        exit();
-    }
-
-    $servername = "localhost";
-    $username = "root";
-    $dbpassword = "";
-    $dbname = "BSCS";
-
-    $conn = new mysqli($servername, $username, $dbpassword, $dbname);
-
-    if ($conn->connect_error) {
-        echo "<h3>Error connecting to database</h3>";
-        die("Connection failed: " . $conn->connect_error);
-    }
-
-    $sql = "INSERT INTO users (email, password) VALUES ('$email', '$password')";
-
-    if ($conn->query($sql) === TRUE) {
-        echo "<script>alert('Signup Success');</script>";
-    } else {
-        echo "Error: " . $sql . "<br>" . $conn->error;
-    }
-
-    $conn->close();
-}
-?>

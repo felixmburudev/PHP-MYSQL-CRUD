@@ -8,30 +8,28 @@ if(isset($_POST['submit'])) {
     }
 
     // db connection
-    $conn = mysqli_connect("localhost", "root", "", "BSCS");
+    $conn = mysqli_connect("sql11.freesqldatabase.com", "sql11696603", "ugd3D8qMRU", "sql11696603");
     if (!$conn) {
         die("Connection failed: " . mysqli_connect_error());
     }
 
-    // check if a record exists for the given email since you can't update details doesn't exist
     $sql_check = "SELECT * FROM students WHERE email = '$email'";
     $result_check = mysqli_query($conn, $sql_check);
-    if (mysqli_num_rows($result_check) == 0) {
+    if (mysqli_num_rows($result_check) == 0) {        
+        echo "<script>alert('Add a record 1st');</script>";
         header("Location: addrecord.php?email=$email");
         exit();
     }
 
-    // Retrieve form data
     $name = $_POST['name'];
     $dob = $_POST['dob'];
     $gender = $_POST['gender'];
     $class = $_POST['class'];
 
-    // Update the record in the database
     $sql = "UPDATE students SET name = '$name', dob = '$dob', gender = '$gender', class = '$class' WHERE email = '$email'";
     if (mysqli_query($conn, $sql)) {
-        $affected_rows = mysqli_affected_rows($conn);
-        echo "Record updated successfully. Affected rows: " . $affected_rows . ". User email: " . $email;
+        // $affected_rows = mysqli_affected_rows($conn);
+        echo "<h3 style='position: fixed; top: 0; left: 0; width: 100%; background-color: white; z-index: 9999; padding: 10px; color: Green;'>Record updated successfully </h3>";
     } else {
         echo "Error: " . $sql . "<br>" . mysqli_error($conn);
     }

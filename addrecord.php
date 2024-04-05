@@ -14,7 +14,7 @@ if(isset($_POST['submit'])) {
     $gender = $_POST['gender'];
     $class = $_POST['class'];   
 
-    $conn = mysqli_connect("localhost", "root", "", "BSCS");
+    $conn = mysqli_connect("sql11.freesqldatabase.com", "sql11696603", "ugd3D8qMRU", "sql11696603");
 
     if (!$conn) {
         die("Connection failed: " . mysqli_connect_error());
@@ -24,14 +24,14 @@ if(isset($_POST['submit'])) {
     $sql_check = "SELECT * FROM students WHERE email = '$email'";
     $result_check = mysqli_query($conn, $sql_check);
     if (mysqli_num_rows($result_check) > 0) {
-        echo "<script type='text/javascript'>alert('Can't add record, Email already exists');</script>";
+        echo "<h3 style='position: fixed; top: 0; left: 0; width: 100%; background-color: white; z-index: 9999; padding: 10px; color: red;'>Can't add record, Email already exists'</h3>";
     } else {
         // Insert the new record
         $sql_insert = "INSERT INTO students (name, dob, gender, class, email) VALUES (?, ?, ?, ?, ?)";
         $stmt = mysqli_prepare($conn, $sql_insert);
         mysqli_stmt_bind_param($stmt, "sssss", $name, $dob, $gender, $class, $email);
         if (mysqli_stmt_execute($stmt)) {
-            echo "<script type='text/javascript'>alert('Registered successfully');</script>";
+            echo "<h3 style='position: fixed; top: 0; left: 0; width: 100%; background-color: white; z-index: 9999; padding: 10px; color: red;'>Registered successfully</h3>";
         } else {
             echo "Error: " . mysqli_error($conn);
         }
