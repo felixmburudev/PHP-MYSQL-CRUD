@@ -1,6 +1,6 @@
 <?php
 $email = isset($_GET['email']) ? $_GET['email'] : '';
-$conn = mysqli_connect("sql11.freesqldatabase.com", "sql11696603", "ugd3D8qMRU", "sql11696603");
+$conn = mysqli_connect("localhost", "root", "", "BSCS");
 if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
 }
