@@ -1,9 +1,9 @@
 <?php
-$email = isset($_GET['email']) ? $_GET['email'] : '';
+$email = isset($_GET['email']) ? $_GET['email'] : ''; //getting email from url  
 if(isset($_POST['submit'])) {
     $email = isset($_POST['email']) ? $_POST['email'] : '';
     if(empty($email)) {
-        header("Location: login.php"); 
+        header("Location: login.php"); //if the email is not set, redirect to login page
         exit(); 
     }
 
@@ -12,7 +12,7 @@ if(isset($_POST['submit'])) {
     if (!$conn) {
         die("Connection failed: " . mysqli_connect_error());
     }
-
+///checking if a record exists, so that it can be updated , yoou cant update a non existent record
     $sql_check = "SELECT * FROM students WHERE email = '$email'";
     $result_check = mysqli_query($conn, $sql_check);
     if (mysqli_num_rows($result_check) == 0) {        

@@ -1,13 +1,14 @@
 
 <?php
-$email = isset($_GET['email']) ? $_GET['email'] : '';
+$email = isset($_GET['email']) ? $_GET['email'] : ''; //check if email is set in the url
 $email_exist = strlen($email) > 0;
 if(isset($_POST['submit'])) {
 
     $email = isset($_POST['email']) ? $_POST['email'] : '';
     if(empty($email)) {
         header("Location: login.php"); // Redirect to login.php
-        exit(); // Stop further execution
+        exit();
+        
     }
     $name = $_POST['name'];
     $dob = $_POST['dob'];

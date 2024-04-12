@@ -16,9 +16,15 @@ if(isset($_POST['submit'])) {
                 var url = 'index.php?email=' + '$email';
                 alert('Login Successful');
                 window.location = url;
-              </script>";
+              </script>"; //embended javascript code to alert and redirect to index.php with the url attched in the url
     } else {
-        echo "<h3 style='position: fixed; top: 0; left: 0; width: 100%; background-color: white; z-index: 9999; padding: 10px; color: red;'>Wrong Password</h3>";
+        echo "<h3 style='position:
+         fixed; top: 0;
+          left: 0
+          ; width: 100%;
+           background-color: white;
+            z-index: 9999; padding: 10px;
+             color: red;'>Wrong Password</h3>";
     }
 }
 ?>
@@ -40,7 +46,7 @@ if(isset($_POST['submit'])) {
             <input type="text" required name="email" id="email"><br>
             <label for="password">Password:</label>
             <input type="password" required name="password" id="password"><br>
-            <input type="submit" value="Submit" name="submit" class="login-submit-btn">
+            <input type="submit" value="Login" name="submit" class="login-submit-btn">
         </form>
         <a href="signup.php" class="signup-link">Signup</a>
     </div>

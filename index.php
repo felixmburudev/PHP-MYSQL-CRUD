@@ -1,4 +1,4 @@
-<?php include_once "tableCreator.php"; ?>
+ 
 
 <?php
 $email = isset($_GET['email']) ? $_GET['email'] : '';
